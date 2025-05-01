@@ -32,8 +32,8 @@ public class Servicio {
     // @GeneratedValue(strategy = GenerationType.IDENTITY): Indica que el valor de id será generado automáticamente por la base de datos, usando auto-incremento.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // Estos son los atributos que representan las columnas de la tabla servicios. No necesitan anotaciones extra si los nombres coinciden con los nombres de las columnas (por convención).
-    Long id;
-    String nombre;
-    String descripcion;
-    Double precio;
+    private Long id;
+    private String nombre;
+    private String descripcion;
+    private Double precio;
 }

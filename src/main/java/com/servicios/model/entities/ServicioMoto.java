@@ -31,4 +31,5 @@ public class ServicioMoto {
     Long cargo_id;
     Date fecha_servicio;
     String comentarios;
+    String estado;
 }
