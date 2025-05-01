@@ -2,7 +2,13 @@ package com.servicios.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +33,15 @@ public class ServicioController {
         return servicioService.getAllServicios();
     }
     
+    @PostMapping("/crear")
+    public ResponseEntity<Servicio> createServicio(@RequestBody Servicio servicio){
+        Servicio createdServicio = servicioService.createServicio(servicio);
+        return new ResponseEntity<>(createdServicio, HttpStatus.CREATED);  // Responde con 201 (Created)
+    }
 
+    @PutMapping("/actualizar/{id}")
+    public Servicio updatedServicio(@PathVariable Long id, @RequestBody Servicio servicio){
+        servicio.setId(id); // Establecemos el id para que se actualice el servicio con el id correspondiente
+        return servicioService.updateServicio(id, servicio); // Llamamos al servicio que realiza la actualización
+    }
 }

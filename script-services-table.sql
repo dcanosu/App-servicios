@@ -5,7 +5,8 @@ CREATE TABLE servicios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255),
-    precio DECIMAL(10,2) NOT NULL
+    precio DECIMAL(10,2) NOT NULL,
+    ALTER TABLE servicios ADD COLUMN activo BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE servicio_motos (
@@ -15,5 +16,12 @@ CREATE TABLE servicio_motos (
     cargo_id INT,
     fecha_servicio DATE NOT NULL,
     comentarios VARCHAR(255),
-    FOREIGN KEY (servicio_id) REFERENCES servicios(id)
+    FOREIGN KEY (servicio_id) REFERENCES servicios(id),
+    ALTER TABLE servicio_motos ADD COLUMN estado VARCHAR(20) DEFAULT "Terminado"
 );
+
+-- ESTADOS POSIBLES:
+-- - Pendiente
+-- - En proceso
+-- - Cancelado
+-- - Finalizado
