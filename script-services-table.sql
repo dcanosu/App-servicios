@@ -8,7 +8,7 @@ CREATE TABLE servicios (
     precio DECIMAL(10,2) NOT NULL
 );
 
-CREATE TABLE servicio_moto (
+CREATE TABLE servicio_motos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     moto_id INT,
     servicio_id INT,
