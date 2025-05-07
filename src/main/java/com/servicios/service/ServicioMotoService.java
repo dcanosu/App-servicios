@@ -5,5 +5,16 @@ import java.util.List;
 import com.servicios.model.entities.ServicioMoto;
 
 public interface ServicioMotoService {
-    List<ServicioMoto>getAllServicioMotos();
+    
+    public ServicioMoto insertServicioMoto(ServicioMoto servicioMoto);
+
+    public ServicioMoto findServicioMoto(Long id) throws Exception;
+
+    public List<ServicioMoto> listServicioMoto();
+
+    public ServicioMoto updateServicioMoto(ServicioMoto servicioMoto) throws Exception;
+
+    public void deleteServicioMoto(Long id) throws Exception;
+
+    public List<ServicioMoto>getAllServicioMotos();
 }
