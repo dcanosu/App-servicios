@@ -1,5 +1,9 @@
 package com.servicios.service;
 
-public interface ServicioMotoService {
+import java.util.List;
 
+import com.servicios.model.entities.ServicioMoto;
+
+public interface ServicioMotoService {
+    List<ServicioMoto>getAllServicioMotos();
 }

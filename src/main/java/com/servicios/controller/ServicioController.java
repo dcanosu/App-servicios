@@ -36,12 +36,18 @@ public class ServicioController {
     @PostMapping("/crear")
     public ResponseEntity<Servicio> createServicio(@RequestBody Servicio servicio){
         Servicio createdServicio = servicioService.createServicio(servicio);
+        return new ResponseEntity<>(createdServicio, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/crearManual")
+    public ResponseEntity<Servicio> createServicioManual(@RequestBody Servicio servicio){
+        Servicio createdServicio = servicioService.createServicioManual(servicio);
         return new ResponseEntity<>(createdServicio, HttpStatus.CREATED);  // Responde con 201 (Created)
     }
 
     @PutMapping("/actualizar/{id}")
-    public Servicio updatedServicio(@PathVariable Long id, @RequestBody Servicio servicio){
+    public Servicio updatedServicio2(@PathVariable Long id, @RequestBody Servicio servicio){
         servicio.setId(id); // Establecemos el id para que se actualice el servicio con el id correspondiente
-        return servicioService.updateServicio(id, servicio); // Llamamos al servicio que realiza la actualización
+        return servicioService.updateServicio2(id, servicio); // Llamamos al servicio que realiza la actualización
     }
 }
