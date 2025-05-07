@@ -8,6 +8,10 @@ public interface ServicioService {
     List<Servicio>getAllServicios();
 
     Servicio createServicio(Servicio servicio);
+    
+    Servicio createServicioManual(Servicio servicio);
 
     Servicio updateServicio(Long id, Servicio servicio);
+
+    Servicio updateServicio2(Long id, Servicio servicio);
 }
