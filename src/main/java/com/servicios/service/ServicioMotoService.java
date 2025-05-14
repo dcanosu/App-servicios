@@ -2,6 +2,7 @@ package com.servicios.service;
 
 import java.util.List;
 
+import com.servicios.model.dto.ServicioMotoRespuesta;
 import com.servicios.model.entities.ServicioMoto;
 
 public interface ServicioMotoService {
@@ -17,4 +18,7 @@ public interface ServicioMotoService {
     public void deleteServicioMoto(Long id) throws Exception;
 
     public List<ServicioMoto>getAllServicioMotos();
+
+    ServicioMotoRespuesta obtenerInfoServicio(Long idCliente, Long idMoto);
+
 }

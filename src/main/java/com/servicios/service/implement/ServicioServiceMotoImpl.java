@@ -2,8 +2,13 @@ package com.servicios.service.implement;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.servicios.model.dto.ClienteDto;
+import com.servicios.model.dto.MotoDto;
+import com.servicios.model.dto.ServicioMotoRespuesta;
 import com.servicios.model.entities.ServicioMoto;
 import com.servicios.model.repositories.ServicioMotoRepositorio;
 import com.servicios.service.ServicioMotoService;
@@ -60,5 +65,22 @@ public class ServicioServiceMotoImpl implements ServicioMotoService {
     public List<ServicioMoto> getAllServicioMotos(){
         return servicioMotoRepositorio.getAllServicioMotos(); //Metodo personalizado
         // return servicioRepositorio.findAll();
+    }
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Override
+    public ServicioMotoRespuesta obtenerInfoServicio(Long idCliente, Long idMoto) {
+        ClienteDto cliente = restTemplate.getForObject(
+            "http://localhost:9090/api/clientes/" + idCliente, ClienteDto.class);
+
+        MotoDto moto = restTemplate.getForObject(
+            "http://localhost:9090/api/motos/" + idMoto, MotoDto.class);
+        
+        // ServicioMoto servicioMoto = restTemplate.getForObject(
+        //     "http://localhost:9091/api/servicios/" + moto_id, ServicioMoto.class);
+
+        return new ServicioMotoRespuesta(cliente, moto);
     }
 }
