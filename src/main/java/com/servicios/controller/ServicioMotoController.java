@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.servicios.model.dto.ServicioMotoRespuesta;
 import com.servicios.model.entities.ServicioMoto;
 import com.servicios.service.ServicioMotoService;
 
@@ -76,5 +77,13 @@ public class ServicioMotoController {
     @GetMapping("/todos")
     public List<ServicioMoto> getAllServicios(){
         return servicioMotoService.getAllServicioMotos();
+    }
+
+    @GetMapping("/info/{idCliente}/{idMoto}")
+    public ResponseEntity<ServicioMotoRespuesta> obtenerInfo(
+            @PathVariable Long idCliente,
+            @PathVariable Long idMoto) {
+        ServicioMotoRespuesta respuesta = servicioMotoService.obtenerInfoServicio(idCliente, idMoto);
+        return ResponseEntity.ok(respuesta);
     }
 }
