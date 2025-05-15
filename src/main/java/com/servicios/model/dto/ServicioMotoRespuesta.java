@@ -7,14 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ServicioMotoRespuesta {
-    private ClienteDto cliente;
-    private MotoDto moto;
-    // private ServicioMoto servicioMoto;
+    private ClienteDTO cliente;
+    private MotoDTO moto;
 
-    public ServicioMotoRespuesta(ClienteDto cliente, MotoDto moto) {
+    public ServicioMotoRespuesta(ClienteDTO cliente) {
         this.cliente = cliente;
-        this.moto = moto;
-        // this.servicioMoto = servicioMoto;
     }
-
 }
