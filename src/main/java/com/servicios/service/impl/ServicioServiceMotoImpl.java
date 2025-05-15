@@ -1,4 +1,4 @@
-package com.servicios.service.implement;
+package com.servicios.service.impl;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.servicios.model.dto.ClienteDto;
-import com.servicios.model.dto.MotoDto;
+import com.servicios.model.dto.ClienteDTO;
+import com.servicios.model.dto.MotoDTO;
 import com.servicios.model.dto.ServicioMotoRespuesta;
 import com.servicios.model.entities.ServicioMoto;
 import com.servicios.model.repositories.ServicioMotoRepositorio;
@@ -72,15 +72,19 @@ public class ServicioServiceMotoImpl implements ServicioMotoService {
 
     @Override
     public ServicioMotoRespuesta obtenerInfoServicio(Long idCliente, Long idMoto) {
-        ClienteDto cliente = restTemplate.getForObject(
-            "http://localhost:9090/api/clientes/" + idCliente, ClienteDto.class);
+        ClienteDTO cliente = obtenerCliente(idCliente);
+        MotoDTO moto = obtenerMoto(idMoto);
 
-        MotoDto moto = restTemplate.getForObject(
-            "http://localhost:9090/api/motos/" + idMoto, MotoDto.class);
-        
-        // ServicioMoto servicioMoto = restTemplate.getForObject(
-        //     "http://localhost:9091/api/servicios/" + moto_id, ServicioMoto.class);
+        cliente.setMoto(moto); // Asignar la moto al cliente
 
-        return new ServicioMotoRespuesta(cliente, moto);
+        return new ServicioMotoRespuesta(cliente);
+    }
+
+    private ClienteDTO obtenerCliente(Long idCliente){
+        return restTemplate.getForObject("http://localhost:9090/api/clientes/" + idCliente, ClienteDTO.class);
+    }
+
+    private MotoDTO obtenerMoto(Long idMoto){
+        return restTemplate.getForObject("http://localhost:9090/api/motos/" + idMoto, MotoDTO.class);
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,26 +29,55 @@ public class ServicioController {
         this.servicioService = servicioService;
     }
 
+    // Insertar (POST)
+    @PostMapping
+    public ResponseEntity<Servicio> insertarServicio(@RequestBody Servicio servicio){
+        Servicio nuevo = servicioService.insertServicio(servicio);
+        return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
+    }
+
+    // Buscar por ID (GET)
+    @GetMapping("/{id}")
+    public ResponseEntity<Servicio> obtenerServicio(@PathVariable Long id){
+        try{
+            Servicio servicio = servicioService.findServicio(id);
+            return ResponseEntity.ok(servicio);
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Listar todos (GET)
+    @GetMapping
+    public ResponseEntity<List<Servicio>> listarServicio(){
+        return ResponseEntity.ok(servicioService.listServicio());
+    }
+
+    // Actualizar (PUT)
+    @PutMapping("/{id}")
+    public ResponseEntity<Servicio> actualizarServicio(@PathVariable Long id, @RequestBody Servicio servicio) {
+        try {
+            servicio.setId(id); // Asegura que el ID coincida
+            Servicio actualizado = servicioService.updateServicio(servicio);
+            return ResponseEntity.ok(actualizado);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Eliminar (DELETE)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarServicio(@PathVariable Long id) {
+        try {
+            servicioService.deleteServicio(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/todos")
     public List<Servicio> getAllServicios(){
         return servicioService.getAllServicios();
-    }
-    
-    @PostMapping("/crear")
-    public ResponseEntity<Servicio> createServicio(@RequestBody Servicio servicio){
-        Servicio createdServicio = servicioService.createServicio(servicio);
-        return new ResponseEntity<>(createdServicio, HttpStatus.CREATED);
-    }
-
-    @PostMapping("/crearManual")
-    public ResponseEntity<Servicio> createServicioManual(@RequestBody Servicio servicio){
-        Servicio createdServicio = servicioService.createServicioManual(servicio);
-        return new ResponseEntity<>(createdServicio, HttpStatus.CREATED);  // Responde con 201 (Created)
-    }
-
-    @PutMapping("/actualizar/{id}")
-    public Servicio updatedServicio2(@PathVariable Long id, @RequestBody Servicio servicio){
-        servicio.setId(id); // Establecemos el id para que se actualice el servicio con el id correspondiente
-        return servicioService.updateServicio2(id, servicio); // Llamamos al servicio que realiza la actualización
     }
 }

@@ -5,13 +5,17 @@ import java.util.List;
 import com.servicios.model.entities.Servicio;
 
 public interface ServicioService {
-    List<Servicio>getAllServicios();
+    // List<Servicio>getAllServicios();
 
-    Servicio createServicio(Servicio servicio);
-    
-    Servicio createServicioManual(Servicio servicio);
+    public Servicio insertServicio(Servicio servicioServicio);
 
-    Servicio updateServicio(Long id, Servicio servicio);
+    public Servicio findServicio(Long id) throws Exception;
 
-    Servicio updateServicio2(Long id, Servicio servicio);
+    public List<Servicio> listServicio();
+
+    public Servicio updateServicio(Servicio servicioServicio) throws Exception;
+
+    public void deleteServicio(Long id) throws Exception;
+
+    public List<Servicio>getAllServicios();
 }
