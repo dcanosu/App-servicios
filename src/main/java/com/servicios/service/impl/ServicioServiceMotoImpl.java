@@ -19,9 +19,6 @@ public class ServicioServiceMotoImpl implements ServicioMotoService {
 
     private final ServicioMotoRepositorio servicioMotoRepositorio;
 
-    // @Autowired -> No es recomendable prosionalmente dado que no facilita pruebas mocks
-    // ServicioMotoRepositorio servicioMotoRepositorio2;
-
     @Override
     public ServicioMoto insertServicioMoto(ServicioMoto servicioMoto){
         return servicioMotoRepositorio.save(servicioMoto);
@@ -49,12 +46,6 @@ public class ServicioServiceMotoImpl implements ServicioMotoService {
         }
         return servicioMotoRepositorio.save(servicioMoto);
     }
-
-    // @Override
-    // public ServicioMoto updateServicioMoto(ServicioMoto servicioMoto) throws Exception{
-    //     findServicioMoto(servicioMoto.getId());
-    //     return servicioMotoRepositorio.save(servicioMoto);
-    // }
 
     public void deleteServicioMoto(Long id) throws Exception{
         findServicioMoto(id); // lanza excepción si no existe

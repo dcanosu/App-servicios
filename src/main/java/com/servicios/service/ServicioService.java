@@ -5,7 +5,6 @@ import java.util.List;
 import com.servicios.model.entities.Servicio;
 
 public interface ServicioService {
-    // List<Servicio>getAllServicios();
 
     public Servicio insertServicio(Servicio servicioServicio);
 
