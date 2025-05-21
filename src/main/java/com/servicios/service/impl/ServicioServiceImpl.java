@@ -40,6 +40,7 @@ public class ServicioServiceImpl implements ServicioService {
         return servicioRepositorio.save(servicio);
     }
 
+    @Override
     public void deleteServicio(Long id) throws Exception{
         findServicio(id); // lanza excepción si no existe
         servicioRepositorio.deleteById(id);

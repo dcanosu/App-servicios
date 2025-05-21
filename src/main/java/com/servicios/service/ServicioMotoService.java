@@ -20,5 +20,4 @@ public interface ServicioMotoService {
     public List<ServicioMoto>getAllServicioMotos();
 
     ServicioMotoRespuesta obtenerInfoServicio(Long idCliente, Long idMoto);
-
 }
