@@ -10,3 +10,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
+servicio:
+  clientes:
+    url: http://localhost:9090/api/clientes/
+  motos:
+    url: http://localhost:9090/api/motos/
+  servicioMotos:
+    url: http://localhost:9091/api/serviciomotos/

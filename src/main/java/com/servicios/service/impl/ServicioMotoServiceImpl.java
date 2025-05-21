@@ -56,25 +56,4 @@ public class ServicioMotoServiceImpl implements ServicioMotoService {
         getServicioMotoById(id); // lanza excepción si no existe
         servicioMotoRepositorio.deleteById(id);
     }
-
-    // @Autowired
-    // private RestTemplate restTemplate;
-
-    // @Override
-    // public ServicioMotoRespuesta obtenerInfoServicio(Long idCliente, Long idMoto) {
-    //     ClienteDTO cliente = obtenerCliente(idCliente);
-    //     MotoDTO moto = obtenerMoto(idMoto);
-
-    //     cliente.setMoto(moto); // Asignar la moto al cliente
-
-    //     return new ServicioMotoRespuesta(cliente);
-    // }
-
-    // private ClienteDTO obtenerCliente(Long idCliente){
-    //     return restTemplate.getForObject("http://localhost:9090/api/clientes/" + idCliente, ClienteDTO.class);
-    // }
-
-    // private MotoDTO obtenerMoto(Long idMoto){
-    //     return restTemplate.getForObject("http://localhost:9090/api/motos/" + idMoto, MotoDTO.class);
-    // }
 }
