@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.servicios.model.dto.ServicioMotoRespuesta;
+// import com.servicios.model.dto.ServicioMotoRespuesta;
 import com.servicios.model.entities.ServicioMoto;
 import com.servicios.service.ServicioMotoService;
 
@@ -27,31 +27,36 @@ public class ServicioMotoController {
         this.servicioMotoService = servicioMotoService;
     }
 
-    // Insertar (POST)
+    // Crear servicioMoto (POST)
     @PostMapping
-    public ResponseEntity<ServicioMoto> insertarServicioMoto(@RequestBody ServicioMoto servicioMoto){
-        ServicioMoto nuevo = servicioMotoService.insertServicioMoto(servicioMoto);
+    public ResponseEntity<ServicioMoto> crearServicioMoto(@RequestBody ServicioMoto servicioMoto){
+        ServicioMoto nuevo = servicioMotoService.createServicioMoto(servicioMoto);
         return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
     }
 
-    // Buscar por ID (GET)
+    // Buscar un servicioMoto por ID (GET)
     @GetMapping("/{id}")
     public ResponseEntity<ServicioMoto> obtenerServicioMoto(@PathVariable Long id){
         try{
-            ServicioMoto servicio = servicioMotoService.findServicioMoto(id);
-            return ResponseEntity.ok(servicio);
+            ServicioMoto servicioMoto = servicioMotoService.getServicioMotoById(id);
+            return ResponseEntity.ok(servicioMoto);
         }catch (Exception e){
             return ResponseEntity.notFound().build();
         }
     }
 
-    // Listar todos (GET)
+    // Listar todos los servicioMotos (GET)
     @GetMapping
-    public ResponseEntity<List<ServicioMoto>> listarServicioMoto(){
-        return ResponseEntity.ok(servicioMotoService.listServicioMoto());
+    public ResponseEntity<List<ServicioMoto>> listarServicioMotos(){
+        return ResponseEntity.ok(servicioMotoService.getAllServicioMotos());
     }
 
-    // Actualizar (PUT)
+    @GetMapping("/todos")
+    public List<ServicioMoto> listarServicioMotosPersonalizado(){
+        return servicioMotoService.getCustomServicioMotos();
+    }
+
+    // Actualizar un servicioMoto (PUT)
     @PutMapping("/{id}")
     public ResponseEntity<ServicioMoto> actualizarServicioMoto(@PathVariable Long id, @RequestBody ServicioMoto servicioMoto) {
         try {
@@ -63,7 +68,7 @@ public class ServicioMotoController {
         }
     }
 
-    // Eliminar (DELETE)
+    // Eliminar un servicioMoto (DELETE)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarServicioMoto(@PathVariable Long id) {
         try {
@@ -74,16 +79,11 @@ public class ServicioMotoController {
         }
     }
 
-    @GetMapping("/todos")
-    public List<ServicioMoto> getAllServicios(){
-        return servicioMotoService.getAllServicioMotos();
-    }
-
-    @GetMapping("/info/{idCliente}/{idMoto}")
-    public ResponseEntity<ServicioMotoRespuesta> obtenerInfo(
-            @PathVariable Long idCliente,
-            @PathVariable Long idMoto) {
-        ServicioMotoRespuesta respuesta = servicioMotoService.obtenerInfoServicio(idCliente, idMoto);
-        return ResponseEntity.ok(respuesta);
-    }
+    // @GetMapping("/info/{idCliente}/{idMoto}")
+    // public ResponseEntity<ServicioMotoRespuesta> obtenerInfo(
+    //         @PathVariable Long idCliente,
+    //         @PathVariable Long idMoto) {
+    //     ServicioMotoRespuesta respuesta = servicioMotoService.obtenerInfoServicio(idCliente, idMoto);
+    //     return ResponseEntity.ok(respuesta);
+    // }
 }

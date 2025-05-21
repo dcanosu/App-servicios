@@ -18,37 +18,37 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     @Override
-    public Servicio insertServicio(Servicio servicioServicio){
-        return servicioRepositorio.save(servicioServicio);
+    public Servicio createServicio(Servicio servicio){
+        return servicioRepositorio.save(servicio);
     }
 
     @Override
-    public Servicio findServicio(Long id) throws Exception {
-        return servicioRepositorio.findById(id).orElseThrow(() -> new Exception("No se encontró el servicio: " + id));
+    public Servicio getServicioById(Long id) throws Exception {
+        return servicioRepositorio.findById(id).orElseThrow(() -> new Exception("No se encontró el servicio con id: " + id));
     }
 
     @Override
-    public List<Servicio> listServicio(){
+    public List<Servicio> getAllServicios(){
         return servicioRepositorio.findAll();
+    }
+
+    @Override
+    public List<Servicio> getCustomServicios(){
+        return servicioRepositorio.getAllServicios(); //Metodo personalizado
+        // return servicioRepositorio.findAll();
     }
 
     @Override
     public Servicio updateServicio(Servicio servicio) throws Exception{
         if (!servicioRepositorio.existsById(servicio.getId())) {
-            throw new Exception("No se encontró el servicio: " + servicio.getId());
+            throw new Exception("No se encontró el servicio con id: " + servicio.getId());
         }
         return servicioRepositorio.save(servicio);
     }
 
     @Override
     public void deleteServicio(Long id) throws Exception{
-        findServicio(id); // lanza excepción si no existe
+        getServicioById(id); // lanza excepción si no existe
         servicioRepositorio.deleteById(id);
-    }
-
-    @Override
-    public List<Servicio> getAllServicios(){
-        return servicioRepositorio.getAllServicios(); //Metodo personalizado
-        // return servicioRepositorio.findAll();
     }
 }

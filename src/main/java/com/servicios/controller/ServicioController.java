@@ -29,43 +29,49 @@ public class ServicioController {
         this.servicioService = servicioService;
     }
 
-    // Insertar (POST)
+    // Crear un servicio (POST)
     @PostMapping
     public ResponseEntity<Servicio> insertarServicio(@RequestBody Servicio servicio){
-        Servicio nuevo = servicioService.insertServicio(servicio);
+        Servicio nuevo = servicioService.createServicio(servicio);
         return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
     }
 
-    // Buscar por ID (GET)
+    // Buscar un servicio por ID (GET)
     @GetMapping("/{id}")
-    public ResponseEntity<Servicio> obtenerServicio(@PathVariable Long id){
+    public ResponseEntity<Servicio> obtenerServicioPorId(@PathVariable Long id){
         try{
-            Servicio servicio = servicioService.findServicio(id);
+            Servicio servicio = servicioService.getServicioById(id);
             return ResponseEntity.ok(servicio);
         }catch (Exception e){
             return ResponseEntity.notFound().build();
         }
     }
 
-    // Listar todos (GET)
+    // Listar todos los servicios (GET)
     @GetMapping
     public ResponseEntity<List<Servicio>> listarServicio(){
-        return ResponseEntity.ok(servicioService.listServicio());
+        return ResponseEntity.ok(servicioService.getAllServicios());
     }
 
-    // Actualizar (PUT)
+    // Listar todos los servicios personalizado (GET)
+    @GetMapping("/todos")
+    public List<Servicio> listarServiciosPersonalizado(){
+        return servicioService.getCustomServicios();
+    }
+
+    // Actualizar servicio (PUT)
     @PutMapping("/{id}")
     public ResponseEntity<Servicio> actualizarServicio(@PathVariable Long id, @RequestBody Servicio servicio) {
         try {
             servicio.setId(id); // Asegura que el ID coincida
-            Servicio actualizado = servicioService.updateServicio(servicio);
-            return ResponseEntity.ok(actualizado);
+            Servicio servicioActualizado = servicioService.updateServicio(servicio);
+            return ResponseEntity.ok(servicioActualizado);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    // Eliminar (DELETE)
+    // Eliminar un servicio(DELETE)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarServicio(@PathVariable Long id) {
         try {
@@ -74,10 +80,5 @@ public class ServicioController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @GetMapping("/todos")
-    public List<Servicio> getAllServicios(){
-        return servicioService.getAllServicios();
     }
 }

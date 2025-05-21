@@ -2,22 +2,22 @@ package com.servicios.service;
 
 import java.util.List;
 
-import com.servicios.model.dto.ServicioMotoRespuesta;
+// import com.servicios.model.dto.ServicioMotoRespuesta;
 import com.servicios.model.entities.ServicioMoto;
 
 public interface ServicioMotoService {
     
-    public ServicioMoto insertServicioMoto(ServicioMoto servicioMoto);
+    ServicioMoto createServicioMoto(ServicioMoto servicioMoto);
 
-    public ServicioMoto findServicioMoto(Long id) throws Exception;
+    ServicioMoto getServicioMotoById(Long id) throws Exception;
 
-    public List<ServicioMoto> listServicioMoto();
+    List<ServicioMoto> getAllServicioMotos();
 
-    public ServicioMoto updateServicioMoto(ServicioMoto servicioMoto) throws Exception;
+    List<ServicioMoto>getCustomServicioMotos();
 
-    public void deleteServicioMoto(Long id) throws Exception;
+    ServicioMoto updateServicioMoto(ServicioMoto servicioMoto) throws Exception;
 
-    public List<ServicioMoto>getAllServicioMotos();
+    void deleteServicioMoto(Long id) throws Exception;
 
-    ServicioMotoRespuesta obtenerInfoServicio(Long idCliente, Long idMoto);
+    // ServicioMotoRespuesta obtenerInfoServicio(Long idCliente, Long idMoto);
 }

@@ -6,15 +6,15 @@ import com.servicios.model.entities.Servicio;
 
 public interface ServicioService {
 
-    public Servicio insertServicio(Servicio servicioServicio);
+    Servicio createServicio(Servicio servicio);
 
-    public Servicio findServicio(Long id) throws Exception;
+    Servicio getServicioById(Long id) throws Exception;
 
-    public List<Servicio> listServicio();
+    List<Servicio> getAllServicios();
 
-    public Servicio updateServicio(Servicio servicioServicio) throws Exception;
+    List<Servicio>getCustomServicios();
+
+    Servicio updateServicio(Servicio servicio) throws Exception;
 
     public void deleteServicio(Long id) throws Exception;
-
-    public List<Servicio>getAllServicios();
 }
