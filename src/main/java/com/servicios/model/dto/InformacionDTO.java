@@ -28,4 +28,7 @@ public class InformacionDTO {
     // App-servicios -> servicios_db -> servicio_motos
     private String descripcion;
     private Double precio;
+
+    // App-empleados -> empleados_db -> servicio_motos
+    // private String nombre_empleado;
 }
