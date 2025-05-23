@@ -19,3 +19,5 @@ servicio:
     url: http://localhost:9091/api/serviciomotos/
   servicios:
     url: http://localhost:9091/api/servicios/
+  empleados:
+    url: http://localhost:9092/empleados

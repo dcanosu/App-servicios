@@ -13,3 +13,6 @@
 
 - **@Id** Define que este campo es la clave primaria de la tabla.
 - **@GeneratedValue(strategy = GenerationType.IDENTITY)** Indica que el valor de id será generado automáticamente por la base de datos, usando auto-incremento.
+
+## Evidencia
+![alt text](image-1.png)
