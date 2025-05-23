@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.servicios.model.dto.ClienteDTO;
-import com.servicios.model.dto.EmpleadoDTO;
+// import com.servicios.model.dto.EmpleadoDTO;
 import com.servicios.model.dto.InformacionDTO;
 import com.servicios.model.dto.MotoDTO;
 import com.servicios.model.dto.ServicioDTO;
