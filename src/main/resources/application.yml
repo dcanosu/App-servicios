@@ -15,5 +15,7 @@ servicio:
     url: http://localhost:9090/api/clientes/
   motos:
     url: http://localhost:9090/api/motos/
-  servicioMotos:
+  serviciomotos:
     url: http://localhost:9091/api/serviciomotos/
+  servicios:
+    url: http://localhost:9091/api/servicios/

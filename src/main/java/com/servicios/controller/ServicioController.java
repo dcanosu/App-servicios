@@ -38,12 +38,13 @@ public class ServicioController {
 
     // Buscar un servicio por ID (GET)
     @GetMapping("/{id}")
-    public ResponseEntity<Servicio> obtenerServicioPorId(@PathVariable Long id){
+    public ResponseEntity<?> obtenerServicioPorId(@PathVariable("id") Long id){
         try{
             Servicio servicio = servicioService.getServicioById(id);
             return ResponseEntity.ok(servicio);
         }catch (Exception e){
-            return ResponseEntity.notFound().build();
+            // return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el servicio con id: " + id);
         }
     }
 
