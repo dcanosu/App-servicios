@@ -12,6 +12,4 @@ public class ServicioMotoDTO {
     private Date fecha_servicio;
     private String comentarios;
     private String estado;
-    private String descripcion;
-    private String precio;
 }

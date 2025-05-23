@@ -27,5 +27,5 @@ public class InformacionDTO {
 
     // App-servicios -> servicios_db -> servicio_motos
     private String descripcion;
-    private String precio;
+    private Double precio;
 }

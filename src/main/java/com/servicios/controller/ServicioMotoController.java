@@ -1,6 +1,8 @@
 package com.servicios.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +38,15 @@ public class ServicioMotoController {
 
     // Buscar un servicioMoto por ID (GET)
     @GetMapping("/{id}")
-    public ResponseEntity<ServicioMoto> obtenerServicioMoto(@PathVariable Long id){
+    public ResponseEntity<?> obtenerServicioMoto(@PathVariable("id") Long id){
         try{
             ServicioMoto servicioMoto = servicioMotoService.getServicioMotoById(id);
             return ResponseEntity.ok(servicioMoto);
         }catch (Exception e){
-            return ResponseEntity.notFound().build();
+            Map<String, String> error = new HashMap<>();
+            error.put("mensaje", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            // return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el servicio con id: " + id);
         }
     }
 
@@ -78,12 +83,4 @@ public class ServicioMotoController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    // @GetMapping("/info/{idCliente}/{idMoto}")
-    // public ResponseEntity<ServicioMotoRespuesta> obtenerInfo(
-    //         @PathVariable Long idCliente,
-    //         @PathVariable Long idMoto) {
-    //     ServicioMotoRespuesta respuesta = servicioMotoService.obtenerInfoServicio(idCliente, idMoto);
-    //     return ResponseEntity.ok(respuesta);
-    // }
 }

@@ -14,13 +14,14 @@ public class InformacionController {
     @Autowired
     private InformacionService informacionService;
 
-    @GetMapping("/info/{idCliente}/{idMoto}/{idServicio}")
+    @GetMapping("/info/{idCliente}/{idMoto}/{idServicioMoto}/{idServicio}")
     public ResponseEntity<InformacionDTO> obtenerDetalle(
-        @PathVariable Long idCliente,
-        @PathVariable Long idMoto,
-        @PathVariable Long idServicio
+        @PathVariable("idCliente") Long idCliente,
+        @PathVariable("idMoto") Long idMoto,
+        @PathVariable("idServicioMoto") Long idServicioMoto,
+        @PathVariable("idServicio") Long idServicio
     ) {
-        InformacionDTO informacion = informacionService.getInfo(idCliente, idMoto, idServicio);
+        InformacionDTO informacion = informacionService.getInfo(idCliente, idMoto, idServicioMoto, idServicio);
         return ResponseEntity.ok(informacion);
     }
 }
